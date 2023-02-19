@@ -1,24 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { RouterProvider } from "react-router-dom";
+import { router } from './router';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import QuotesList from './components/QuotesList';
-import AuthorsList from './components/AuthorsList';
-import { Container } from '@mui/system';
-import { Link } from '@mui/material';
-import Author from './components/Author';
-import QuotesNew from './components/QuotesNew';
-
-const router = createBrowserRouter([
-  {path:"/", element:<App/>},
-  {path:"/quotes", element:<QuotesList/>},
-  {path:"/authors", element:<AuthorsList/>},
-  {path:"/authors/:id", element:<Author/>},
-  {path:"/quotesNew", element:<QuotesNew/>}
-
-]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
