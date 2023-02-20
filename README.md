@@ -14,6 +14,7 @@ ProjetTodoListNLCD : [ JS/REACT ] Défi site React en 1 semaine
 
 In the project directory, you can run:
 
+### `npm install` 
 ### `npm start`
 
 The page will reload when you make changes.\
