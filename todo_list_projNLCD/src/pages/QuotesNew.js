@@ -1,11 +1,7 @@
 import React, { Component } from "react";
-import Button from "@mui/material/Button";
-import { Card, CardContent, Typography } from "@mui/material";
-import { Box, Container } from "@mui/system";
 import AuthorsSelector from "../components/AuthorsSelector";
 
 import {api} from "../lib/Api";
-import SearchField from "../components/SearchField";
 import {Navigate} from "react-router-dom";
 
 export default class QuotesNew extends React.Component {

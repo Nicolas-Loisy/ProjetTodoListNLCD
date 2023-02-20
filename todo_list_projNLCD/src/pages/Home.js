@@ -1,8 +1,5 @@
-import logo from '../logo.svg';
 import '../App.css';
 import React from "react";
-import axios from "axios";
-import QuotesList from './QuotesList';
 import { Link } from 'react-router-dom';
 import { Container } from "@mui/system";
 

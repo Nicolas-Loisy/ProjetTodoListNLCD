@@ -1,5 +1,4 @@
 import axios from "axios";
-const { v4: uuidv4 } = require('uuid');
 
 export default class Api {
 
@@ -20,8 +19,7 @@ export default class Api {
         return await this.get(`/quotes?_expand=author`);
     }
     async insertQuote(content, authorId) {
-        // return (await axios.post(`${this.baseUrl}/quotes`, { content: content, authorId: authorId })).data;
-        return await this.post("/quotes", { id:uuidv4(), content:content, actor:"", authorId:authorId, season:"", title:"", episode:1 })
+        return await this.post("/quotes", { content:content, actor:"", authorId:authorId, season:"", title:"", episode:1 })
     }
 
     async getAuthors(){

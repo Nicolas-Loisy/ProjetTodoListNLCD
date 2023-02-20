@@ -22,4 +22,9 @@ You may also see any lint errors in the console.
 
 In the API directory, you can run:
 
+### `npm install` 
+### `npm run start`
+
+OLD In the API directory, you can run:
+
 ### `npx json-server db.json`
