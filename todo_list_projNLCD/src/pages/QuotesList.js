@@ -5,7 +5,7 @@ import { Card, CardContent, Typography } from "@mui/material";
 import { Box, Container } from "@mui/system";
 
 import {api} from "../lib/Api";
-import SearchField from "./SearchField";
+import SearchField from "../components/SearchField";
 
 export default class QuotesList extends React.Component {
     state = {

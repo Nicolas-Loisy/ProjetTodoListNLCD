@@ -3,7 +3,7 @@ import withRouter from "../lib/withRouter";
 import {api} from "../lib/Api";
 import { Container } from "@mui/system";
 import { Card, CardContent, Grid, Typography } from "@mui/material";
-import Quote from "./Quote";
+import Quote from "../components/Quote";
 
 
 class Author extends React.Component {

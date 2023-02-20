@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-
 import Button from "@mui/material/Button";
 import { Card, CardContent, Typography } from "@mui/material";
 import { Box, Container } from "@mui/system";
+import AuthorsSelector from "../components/AuthorsSelector";
 
 import {api} from "../lib/Api";
-import SearchField from "./SearchField";
+import SearchField from "../components/SearchField";
+import {Navigate} from "react-router-dom";
 
 export default class QuotesNew extends React.Component {
     state = {
@@ -21,25 +22,12 @@ export default class QuotesNew extends React.Component {
     }
 
     render() {
-        const list = (
-          <select value={this.state.authorId} onChange={e => this.updateAuthor(e)}>
-            {
-              this.state.authors.map(author => {
-                return (
-                  <option value={author.id}>{author.name}</option>
-                )
-              })
-            }
-          </select>
-        );
         return (
           <div>
-            {
-              this.state.confirmation ? <div>Création confirmée <a href="/quotes">Retour à la liste</a></div> : ""
-            }
+            {this.state.confirmation && <Navigate replace to="/quotes" />}
             <form onSubmit={e => this.submit(e)}>
               <textarea value={this.state.content} onChange={e => this.updateContent(e)}></textarea>
-              {list}
+              <AuthorsSelector value={this.state.authorId} onChange={e => this.updateAuthor(e)} />
               <button type="submit">Créer</button>
             </form>
           </div>
