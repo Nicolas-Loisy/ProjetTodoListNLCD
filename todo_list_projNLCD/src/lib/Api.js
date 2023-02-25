@@ -5,46 +5,51 @@ export default class Api {
     constructor(baseUrl){
         this.baseUrl = baseUrl;
     }
+
     async get(url){
         return (await axios.get(`${this.baseUrl}${url}`)).data
     }
+    
     async post(url, body){
         const headers = {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
         };
+
         return (await axios.post(`${this.baseUrl}${url}`, body, headers));
     }
-    
-    // async getQuotes(){
-    //     return await this.get(`/quotes?_expand=author`);
-    // }
-    // async insertQuote(content, authorId) {
-    //     return await this.post("/quotes", { content:content, actor:"", authorId:authorId, season:"", title:"", episode:1 })
-    // }
 
-    // async getAuthors(){
-    //     return await this.get(`/authors?_embed=quotes`);
-    // }
-    // async getAuthor(id){
-    //     return await this.get(`/authors/${id}?_embed=quotes`);
-    // }
+    async put(url, body){
+        const headers = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+        };
+        return (await axios.put(`${this.baseUrl}${url}`, body, headers));
+    }
+   
+    async delete(url){
+        const headers = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+        };
+        return (await axios.delete(`${this.baseUrl}${url}`, headers));
+    }
 
     // Listes
     async getLists() {
-        return await this.get(`/lists`);
+        return await this.get(`/lists?_embed=cartes`);
     }
 
     async getList(listId) {
         return await this.get(`/lists/${listId}`);
     }
 
-    async addList(list) {
-        return await this.post(`/lists`, list);
+    async addList(title) {
+        return await this.post(`/lists/`, {title:title});
     }
 
-    async updateList(listId, list) {
-        return await this.put(`/lists/${listId}`, list);
+    async updateList(listId, title) {
+        return await this.put(`/lists/${listId}`, {title:title});
     }
 
     async deleteList(listId) {
@@ -52,24 +57,20 @@ export default class Api {
     }
 
     // Cartes
-    async getCards(listId) {
-        return this.get(`/lists/${listId}/cards`);
+    async getCartes(){
+        return await this.get(`/cartes/`);
     }
 
-    async getCard(listId, cardId) {
-        return await this.get(`/lists/${listId}/cards/${cardId}`);
+    async addCarte(listId, title, type, content) {
+        return await this.post(`/cartes/`, {listId, title, type, content});
     }
 
-    async addCard(listId, card) {
-        return await this.post(`/lists/${listId}/cards`, card);
+    async updateCarte(carteId, listId, title, type, content) {
+        return await this.put(`/cartes/${carteId}`, {listId:listId, title:title, type:type, content:content});
     }
 
-    async updateCard(listId, cardId, card) {
-        return await this.post(`/lists/${listId}/cards/${cardId}`, card);
-    }
-
-    async deleteCard(listId, cardId) {
-        return await this.post(`/lists/${listId}/cards/${cardId}`);
+    async deleteCarte(carteId) {
+        return await this.delete(`/cartes/${carteId}`);
     }
 }
 export const api = new Api("http://localhost:3000");

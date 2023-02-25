@@ -2,38 +2,53 @@
   "lists": [
     {
       "title": "Ma première liste",
-      "cards": [
-        {
-          "title": "Carte 1",
-          "type": "text",
-          "content": "Contenu de la carte 1"
-        },
-        {
-          "title": "Carte 2",
-          "type": "image",
-          "content": "url_de_l_image"
-        },
-        {
-          "title": "Carte 3",
-          "type": "video",
-          "content": "url_de_la_video"
-        }
-      ]
+      "id": "a3038698-7174-4411-8916-2499390cfbc9"
     },
     {
-      "title": "Ma deuxième liste",
-      "cards": [
-        {
-          "title": "Carte 1",
-          "type": "text",
-          "content": "Contenu de la carte 1"
-        },
-        {
-          "title": "Carte 2",
-          "type": "text",
-          "content": "Contenu de la carte 2"
-        }
-      ]
+      "title": "Ma première liste",
+      "id": "5221e841-a3f3-4d82-8d87-e750867e4850"
+    },
+    {
+      "title": "Nouveau titre de la liste2",
+      "id": "58ac1f0b-ed76-4823-8de2-01bd174fd4a9"
+    },
+    {
+      "title": "Alexis2",
+      "id": "7bee85a6-6f52-40ee-a72e-c0872116d860"
+    },
+    {
+      "title": "4",
+      "id": "a4869af0-adca-4129-8564-7bf6de7a6b2f"
+    }
+  ],
+  "cartes": [
+    {
+      "id": "4b0209a5-9f74-4aa3-81c6-79957d69b94a",
+      "listId": "5221e841-a3f3-4d82-8d87-e750867e4850",
+      "title": "Carte 1",
+      "type": "text",
+      "content": "Contenu de la carte 1"
+    },
+    {
+      "id": "350709a5-9f94-4ba3-51c6-79757d69b84b",
+      "listId": "a3038698-7174-4411-8916-2499390cfbc9",
+      "title": "Carte 2",
+      "type": "text",
+      "content": "Contenu de la carte 2"
+    },
+    {
+      "listId": "a3038698-7174-4411-8916-2499390cfbc9",
+      "title": "title Carte",
+      "type": "text",
+      "content": "content Carte2",
+      "id": "14ca2a2c-fe17-4f65-b1e7-1193fbbac482"
+    },
+    {
+      "listId": "7bee85a6-6f52-40ee-a72e-c0872116d860",
+      "title": "MACARTEEE",
+      "type": "",
+      "content": "CZZZ",
+      "id": "e1bdb882-a8c7-438c-8faa-229afc25b61e"
     }
   ]
 }
