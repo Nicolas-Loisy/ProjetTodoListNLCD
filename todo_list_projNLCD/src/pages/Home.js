@@ -5,9 +5,8 @@ import { Container } from "@mui/system";
 
 export default function Home(){
   return <Container maxWidth="sm">
-    <Link to="/quotes">Citations</Link><br/>
-    <Link to="/authors">Auteur</Link><br/>
-    <Link to="/quotesNew">New quote</Link><br/>
+    <Link to="/catalogue">Catalogue Liste</Link><br/>
+    <Link to="/listeNew">New Liste</Link><br/>
   </Container>
 }
 
