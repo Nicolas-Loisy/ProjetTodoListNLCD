@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Button from "@mui/material/Button";
 import { Card, CardContent, Typography } from "@mui/material";
 import { Box, Container } from "@mui/system";

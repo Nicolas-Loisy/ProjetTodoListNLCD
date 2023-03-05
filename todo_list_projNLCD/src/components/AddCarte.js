@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { api } from "../lib/Api";
-import { Navigate } from "react-router-dom";
 
 class AddCarte extends Component {
   constructor(props) {
@@ -10,20 +9,13 @@ class AddCarte extends Component {
       title: "",
       content: "",
       type: "",
-      listId: "",
+      listId: props.listId,
       lists: [],
       message: "" // message de confirmation
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  componentDidMount() {
-    // Récupérer toutes les listes pour la liste déroulante
-    api.getLists().then(lists => {
-      this.setState({ lists });
-    });
   }
 
   handleInputChange(event) {
@@ -45,66 +37,44 @@ class AddCarte extends Component {
       this.state.type,
       this.state.content,
     ).then(() => {
-      // Mettre à jour l'état pour afficher le message
+      this.props.onUpdate();
       this.setState({ message: "Carte ajoutée" });
-      // Rediriger l'utilisateur vers la page de la liste parente
-      const listUrl = `/lists/${this.state.listId}`;
-      return <Navigate to={listUrl} />;
     });
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Titre:
-          <input
-            type="text"
-            name="title"
-            value={this.state.title}
-            onChange={this.handleInputChange}
-          />
-        </label>
-        <br />
-        <label>
-          Contenu:
-          <textarea
-            name="content"
-            value={this.state.content}
-            onChange={this.handleInputChange}
-          ></textarea>
-        </label>
-        <br />
-        <label>
-          Type:
-          <select
-            name="type"
-            value={this.state.type}
-            onChange={this.handleInputChange}
-            defaultValue="text"
-          >
-            <option value="text">Texte</option>
-            <option value="image">Image</option>
+      <form className="p-3" onSubmit={this.handleSubmit}>
+        <div className="mb-3 g-3">
+          <input type="text" className="form-control" name="title" value={this.state.title} onChange={this.handleInputChange} placeholder="Titre carte" maxLength="25" required/>
+        </div>
+
+        <div className="mb-3 g-3">
+          <textarea type="text" className="form-control" name="content" value={this.state.content} onChange={this.handleInputChange} placeholder="Contenu de la carte" required></textarea>
+        </div>
+
+        <div className="mb-3 g-3">
+          <select className="form-select" name="type" onChange={this.handleInputChange} defaultValue="" required>
+            <option value="">-- Séléctionner un type --</option>
+            <option value="Texte">Texte</option>
+            <option value="Image">Image</option>
           </select>
-        </label>
-        <br/>
-        <label>
-          Liste:
-          <select
-            name="listId"
-            value={this.state.listId}
-            onChange={this.handleInputChange}
-          >
-            <option value="">-- Sélectionner une liste --</option>
+        </div>
+
+        {/* <div className="mb-3 g-3">
+          <select className="form-select" name="listId" value={this.state.listId} onChange={this.handleInputChange} required>
+            <option value="" selected>-- Sélectionner une liste --</option>
             {this.state.lists.map(list => (
               <option key={list.id} value={list.id}>
                 {list.title}
               </option>
             ))}
           </select>
-        </label>
-        <br/>
-        <button type="submit">Ajouter</button>
+        </div> */}
+
+        <div className="d-flex justify-content-end">   
+          <button className="btn btn-primary" type="submit">Ajouter</button>
+        </div>
         {this.state.message && <p>{this.state.message}</p>}
       </form>
     );

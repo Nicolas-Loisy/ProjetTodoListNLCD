@@ -41,7 +41,7 @@ export default class Api {
     }
 
     async getList(listId) {
-        return await this.get(`/lists/${listId}`);
+        return await this.get(`/lists/${listId}?_embed=cartes`);
     }
 
     async addList(title) {
