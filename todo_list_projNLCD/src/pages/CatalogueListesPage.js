@@ -2,6 +2,7 @@ import React from "react";
 import { Container } from "@mui/system";
 import {api} from "../lib/Api";
 import { Link } from "react-router-dom";
+import AddList from "../components/AddList";
 
 export default class CatalogueListesPage extends React.Component {
     state = {
@@ -11,6 +12,8 @@ export default class CatalogueListesPage extends React.Component {
     render(){
         return ( 
             <Container maxWidth = "sm">
+                <AddList onUpdate={() => this.updateCatalogue()}/>
+                
                 <table className="table table-striped table-hover">
                     <thead>
                         <tr>
@@ -60,5 +63,10 @@ export default class CatalogueListesPage extends React.Component {
         api.deleteList(listId).then(() => {
           this.componentDidMount();
         });
+    }
+
+    async updateCatalogue() {
+        const listes = await api.getLists();
+        this.setState({ listes: listes });
     }
 }

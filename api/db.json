@@ -9,10 +9,6 @@
       "id": "5221e841-a3f3-4d82-8d87-e750867e4850"
     },
     {
-      "title": "Nouveau titre de la liste2",
-      "id": "58ac1f0b-ed76-4823-8de2-01bd174fd4a9"
-    },
-    {
       "title": "Alexis2",
       "id": "7bee85a6-6f52-40ee-a72e-c0872116d860"
     }
@@ -66,13 +62,6 @@
       "type": "Texte",
       "content": "xxxxxxxx",
       "id": "d1212f48-a524-4879-a928-ab215f43ebd4"
-    },
-    {
-      "listId": "a3038698-7174-4411-8916-2499390cfbc9",
-      "title": "vv",
-      "type": "Texte",
-      "content": "vv",
-      "id": "bfbe60d9-a5a9-4587-8a97-5056f8e06229"
     }
   ]
 }

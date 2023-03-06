@@ -7,8 +7,6 @@ export default function Home(){
   return <Container maxWidth="sm">
     <Link to="/listes">Catalogue des Listes</Link><br/>
     <Link to="/listNew">Nouvelle Liste</Link><br/>
-    <Link to="/cardNew">Nouvelle Carte</Link><br/>
     <Link to="/MyMap">Ma map</Link><br/>
-    
   </Container>
 }

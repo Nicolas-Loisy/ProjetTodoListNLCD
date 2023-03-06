@@ -19,8 +19,10 @@ class AddList extends Component {
   handleSubmit = async (event) => {
     event.preventDefault();
 
-    await api.addList(this.state.title);
-    this.setState({ redirect: true });
+    await api.addList(this.state.title).then(() => {
+      this.props.onUpdate();
+      // this.setState({ redirect: true });
+    })
   };
 
   render() {
@@ -31,13 +33,14 @@ class AddList extends Component {
     return (
       <div>
         <h2>Ajouter une liste</h2>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Titre:
-            <input type="text" value={this.state.title} onChange={this.handleTitleChange} />
-          </label>
-          <br />
-          <button type="submit">Ajouter</button>
+        <form className="p-3" onSubmit={this.handleSubmit}>
+          <div className="mb-3 g-3">
+            <input type="text" className="form-control" name="title" value={this.state.title} onChange={this.handleTitleChange} placeholder="Titre liste" maxLength="25" required/>
+          </div>
+
+          <div className="d-flex justify-content-end">   
+            <button className="btn btn-primary" type="submit">Ajouter</button>
+          </div>
         </form>
       </div>
     );
