@@ -44,7 +44,7 @@
     },
     {
       "listId": "a3038698-7174-4411-8916-2499390cfbc9",
-      "title": "Tarte a la fraise et a la mangue",
+      "title": "Tarte a la fraise et merd",
       "type": "Texte",
       "content": "Tarte a la fraise et a la mangue",
       "id": "485220fc-f386-41d4-ab22-5f38edfa9038"
@@ -62,6 +62,20 @@
       "type": "Texte",
       "content": "xxxxxxxx",
       "id": "d1212f48-a524-4879-a928-ab215f43ebd4"
+    },
+    {
+      "listId": "a3038698-7174-4411-8916-2499390cfbc9",
+      "title": "aaabbbbcccdddd",
+      "type": "Checkbox",
+      "content": "testttaaa",
+      "id": "3ee413ca-25c7-4db5-b657-79674c0bd292"
+    },
+    {
+      "listId": "a3038698-7174-4411-8916-2499390cfbc9",
+      "title": "Test",
+      "type": "Checkbox",
+      "content": "oeufs",
+      "id": "e3878902-3f74-4322-a351-585abc5df4f2"
     }
   ]
 }
