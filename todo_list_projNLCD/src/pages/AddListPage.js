@@ -5,7 +5,6 @@ class AddListPage extends Component {
   render() {
     return (
       <div>
-        <h1>Ajouter une liste</h1>
         <AddList />
       </div>
     );
