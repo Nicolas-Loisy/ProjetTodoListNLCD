@@ -39,9 +39,9 @@ export default function render(props) {
             </div>
             <div className="col-md-2">
                 <button type="button" className="btn btn-outline-primary text-right" data-bs-toggle="modal" data-bs-target={"#updateCarte" +props.carte.id}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-pencil-square" viewBox="0 0 16 16">
                         <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                        <path fillRule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                     </svg>
                 </button>
                 <div className="modal fade" id={"updateCarte" +props.carte.id} tabIndex="-1" aria-labelledby="updateCarte" aria-hidden="true">
@@ -72,36 +72,20 @@ export default function render(props) {
           <div className="row">
             <div className="col-auto pt-3">
                 {isCheckbox ? (
-                    <div class="form-check">
-                        <label class="form-check-label" for={props.carte.id}>
+                    <div className="form-check">
+                        <label className="form-check-label" htmlFor={props.carte.id}>
                         {
                             Array.from(props.carte.content).map((content, i) => {
-                                // console.log(content.label);
-                                if(content.checked){
-                                    return(
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value={i} id="flexCheckDefault" onClick={() => handleUpdateCheckbox(props, !content.checked, i)} checked/>
-                                            <label class="form-check-label" for="flexCheckDefault">
-                                                <Typography variant="body2">
-                                                    {content.label}
-                                                </Typography>
-                                            </label>
-                                        </div>
-                                    )
-                                }else{
-                                    return(
-                                        <div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value={i} id="flexCheckDefault" onClick={() => handleUpdateCheckbox(props, !content.checked, i)} />
-                                                <label class="form-check-label" for="flexCheckDefault">
-                                                    <Typography variant="body2">
-                                                        {content.label}
-                                                    </Typography>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    )
-                                }
+                                return(
+                                    <div key={i} className="form-check">
+                                        <input className="form-check-input" type="checkbox" value={i} id="flexCheckDefault" onChange={() => handleUpdateCheckbox(props, !content.checked, i)} checked={content.checked} />
+                                        <label className="form-check-label" htmlFor="flexCheckDefault">
+                                            <Typography variant="body2">
+                                                {content.label}
+                                            </Typography>
+                                        </label>
+                                    </div>
+                                )
                             })
                         }
                         </label>

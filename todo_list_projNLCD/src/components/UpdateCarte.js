@@ -79,7 +79,7 @@ class UpdateCarte extends Component {
               <h5>Vos checkbox</h5>
               {content.map((checkbox, index) => (
                 <div key={index}>
-                  <div class="row">
+                  <div className="row">
                   <input
                     type="text"
                     className="col m-2 form-control "
@@ -87,7 +87,7 @@ class UpdateCarte extends Component {
                     onChange={(e) => {
                       const { value } = e.target;
                       const updatedContent = content.map((c, i) =>
-                        i === index ? value : c
+                      i === index ? {"label":value, "checked":checkbox.checked} : c
                       );
                       this.setState({ content: updatedContent });
                     }}

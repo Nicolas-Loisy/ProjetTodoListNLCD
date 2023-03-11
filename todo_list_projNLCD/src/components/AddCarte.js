@@ -78,7 +78,7 @@ class AddCarte extends Component {
             <div>
               {checkboxContent.map((checkbox, index) => (
                 <div key={index}>
-                  <div class="row">
+                  <div className="row">
                   <input
                     type="text"
                     className="col m-2 form-control "
@@ -116,9 +116,6 @@ class AddCarte extends Component {
             <textarea type="text" className="form-control" name="content" value={content} onChange={this.handleInputChange} placeholder="Contenu de la carte" required />
           )}
         </div>
-
-        
-
     <div className="mb-3 g-3">
       <button type="submit" className="btn btn-primary">
         Ajouter une carte
