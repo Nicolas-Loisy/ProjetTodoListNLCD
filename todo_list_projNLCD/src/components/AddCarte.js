@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { api } from "../lib/Api";
 
-
 class AddCarte extends Component {
   constructor(props) {
     super(props);
@@ -12,8 +11,8 @@ class AddCarte extends Component {
       type: "",
       listId: props.listId,
       lists: [],
-      message: "" // message de confirmation
-      // checked: ""
+      message: "",
+      checkboxContent: [] // Ajout du tableau pour stocker les contenus de checkbox
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -30,14 +29,25 @@ class AddCarte extends Component {
     });
   }
 
+  // Ajout de la fonction pour ajouter une checkbox
+  handleAddCheckbox = (event) => {
+    event.preventDefault();
+    const checkboxContent = this.state.checkboxContent.concat({ content: "", checked: "false" }); // Ajout d'un objet avec une clé "content" et une clé "checked" initialisée à false
+    this.setState({ checkboxContent });
+  }
+  
+  
   handleSubmit(event) {
     event.preventDefault();
-    // Ajouter une nouvelle carte
+    const { listId, title, type, content, checkboxContent } = this.state;
+    const carteContent = type === "Checkbox" ? checkboxContent.map((c) => ({ label: c, checked: false })) : content;
+    // const carteContent = type === "Checkbox" ? checkboxContent : content; // Utilisation du tableau de contenus de checkbox si type est checkbox
+
     api.addCarte(
-      this.state.listId,
-      this.state.title,
-      this.state.type,
-      this.state.content
+      listId,
+      title,
+      type,
+      carteContent // Utilisation de carteContent au lieu de content
     ).then(() => {
       this.props.onUpdate();
       this.setState({ message: "Carte ajoutée" });
@@ -45,43 +55,74 @@ class AddCarte extends Component {
   }
 
   render() {
+    const { type, content, checkboxContent } = this.state;
+
     return (
       <form className="p-3" onSubmit={this.handleSubmit}>
         <div className="mb-3 g-3">
-          <input type="text" className="form-control" name="title" value={this.state.title} onChange={this.handleInputChange} placeholder="Titre carte" maxLength="25" required/>
+          <input type="text" className="form-control" name="title" value={this.state.title} onChange={this.handleInputChange} placeholder="Titre carte" maxLength="25" required />
         </div>
 
         <div className="mb-3 g-3">
-          <textarea type="text" className="form-control" name="content" value={this.state.content} onChange={this.handleInputChange} placeholder="Contenu de la carte" required></textarea>
+          {type === "Checkbox" ? ( // Condition pour afficher soit le textarea soit les checkboxes
+            <div>
+              {checkboxContent.map((checkbox, index) => (
+                <div key={index}>
+                  <input
+                    type="text"
+                    className="form-control d-inline-block me-2"
+                    value={checkbox}
+                    onChange={(e) => {
+                      const { value } = e.target;
+                      const updatedContent = checkboxContent.map((c, i) =>
+                        i === index ? value : c
+                      );
+                      this.setState({ checkboxContent: updatedContent });
+                    }}
+                    placeholder="Contenu de la checkbox"
+                    required
+                  />
+                  <button
+                    className="btn btn-danger btn-sm"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const updatedContent = checkboxContent.filter(
+                        (_, i) => i !== index
+                      );
+                      this.setState({ checkboxContent: updatedContent });
+                    }}
+                  >
+                    X
+                  </button>
+                </div>
+              ))}
+              <button className="btn btn-primary mt-2" onClick={this.handleAddCheckbox}>
+                Ajouter une checkbox
+              </button>
+            </div>
+          ) : (
+            <textarea type="text" className="form-control" name="content" value={content} onChange={this.handleInputChange} placeholder="Contenu de la carte" required />
+          )}
         </div>
 
         <div className="mb-3 g-3">
-          <select className="form-select" name="type" onChange={this.handleInputChange} defaultValue="" required>
-            <option value="">-- Séléctionner un type --</option>
-            <option value="Texte">Texte</option>
-            <option value="Image">Image</option>
-            <option value="Checkbox">Checkbox</option>
-          </select>
-        </div>
+        <select className="form-select" name="type" onChange={this.handleInputChange} defaultValue="" required >
+        <option value="" disabled>
+          Sélectionnez le type de carte
+        </option>
+        <option value="Texte">Texte</option>
+        <option value="Checkbox">Checkbox</option>
+      </select>
+    </div>
 
-        {/* <div className="mb-3 g-3">
-          <select className="form-select" name="listId" value={this.state.listId} onChange={this.handleInputChange} required>
-            <option value="" selected>-- Sélectionner une liste --</option>
-            {this.state.lists.map(list => (
-              <option key={list.id} value={list.id}>
-                {list.title}
-              </option>
-            ))}
-          </select>
-        </div> */}
-
-        <div className="d-flex justify-content-end">   
-          <button className="btn btn-primary" type="submit">Ajouter</button>
-        </div>
-        {this.state.message && <p>{this.state.message}</p>}
-      </form>
-    );
-  }
+    <div className="mb-3 g-3">
+      <button type="submit" className="btn btn-primary">
+        Ajouter une carte
+      </button>
+    </div>
+  </form>
+);
+}
 }
 
 export default AddCarte;
