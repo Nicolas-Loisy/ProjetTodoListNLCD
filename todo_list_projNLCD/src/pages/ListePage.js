@@ -84,7 +84,8 @@ class ListePage extends React.Component {
         let results = this.state.liste.cartes;
         if (search.length > 0) {
           results = this.state.liste.cartes.filter(carte => {
-            return carte.content.includes(search)
+            return (carte.content.includes(search) || carte.title.includes(search))
+            //return carte.content.includes(search)
           })
         }
         this.setState({
