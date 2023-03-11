@@ -64,14 +64,25 @@ class AddCarte extends Component {
         </div>
 
         <div className="mb-3 g-3">
+          <select className="form-select" name="type" onChange={this.handleInputChange} defaultValue="" required >
+            <option value="" disabled>
+              Sélectionnez le type de carte
+            </option>
+            <option value="Texte">Texte</option>
+            <option value="Checkbox">Checkbox</option>
+          </select>
+        </div>
+
+        <div className="mb-3">
           {type === "Checkbox" ? ( // Condition pour afficher soit le textarea soit les checkboxes
             <div>
               {checkboxContent.map((checkbox, index) => (
                 <div key={index}>
+                  <div class="row">
                   <input
                     type="text"
-                    className="form-control d-inline-block me-2"
-                    value={checkbox}
+                    className="col m-2 form-control "
+                    value={checkbox.label}
                     onChange={(e) => {
                       const { value } = e.target;
                       const updatedContent = checkboxContent.map((c, i) =>
@@ -83,7 +94,7 @@ class AddCarte extends Component {
                     required
                   />
                   <button
-                    className="btn btn-danger btn-sm"
+                    className="btn btn-danger m-2 col-auto d-inline-block btn-sm"
                     onClick={(e) => {
                       e.preventDefault();
                       const updatedContent = checkboxContent.filter(
@@ -94,10 +105,11 @@ class AddCarte extends Component {
                   >
                     X
                   </button>
+                  </div>
                 </div>
               ))}
               <button className="btn btn-primary mt-2" onClick={this.handleAddCheckbox}>
-                Ajouter une checkbox
+                + Ajouter une checkbox
               </button>
             </div>
           ) : (
@@ -105,15 +117,7 @@ class AddCarte extends Component {
           )}
         </div>
 
-        <div className="mb-3 g-3">
-        <select className="form-select" name="type" onChange={this.handleInputChange} defaultValue="" required >
-        <option value="" disabled>
-          Sélectionnez le type de carte
-        </option>
-        <option value="Texte">Texte</option>
-        <option value="Checkbox">Checkbox</option>
-      </select>
-    </div>
+        
 
     <div className="mb-3 g-3">
       <button type="submit" className="btn btn-primary">
