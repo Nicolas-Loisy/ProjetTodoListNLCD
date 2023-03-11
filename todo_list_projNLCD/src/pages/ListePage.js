@@ -1,10 +1,12 @@
 import React from "react";
 import withRouter from "../lib/withRouter";
 import {api} from "../lib/Api";
-import { Container } from "@mui/system";
+import { Container, Box } from "@mui/system";
 import { Grid, Typography } from "@mui/material";
-import Carte from "../components/Carte";
+// import Carte from "../components/Carte";
 import AddCarte from "../components/AddCarte";
+import SearchField from "../components/SearchField";
+import SearchResults from "../components/SearchResults";
 
 class ListePage extends React.Component {
 
@@ -12,25 +14,35 @@ class ListePage extends React.Component {
 		liste:{
 			id: "", 
 			title: "", 
-			cartes: []
+			cartes: [],
+            results: [],
+            search : ""
 		}
 	}; 
+    
             
     render(){
+        console.log(this.state.liste); 
         return (
             <div>
                 <Container>
                     {this.state.liste.cartes.length === 0 ? (
-                        <Typography variant="h5">Aucune To-do list créée</Typography>
+                        <Typography variant="h5">Aucune carte créée</Typography>
                     ) : (
                         <Grid container spacing={2}>
-                            {this.state.liste.cartes.map(carte=>{
+                            <Box sx={{marginBottom: "5px"}}>
+                                <SearchField value={this.state.liste.search} onChange={(e) => this.search(e)} />
+                            </Box>
+
+                            <SearchResults results={this.state.liste.results} search={this.state.liste.search}/>
+
+                            {/* {this.state.liste.cartes.map(carte=>{
                                 return (
                                     <Grid item xs={12} key={carte.id} sm={4}> 
                                         <Carte liste={this.state.liste} carte={carte} onUpdate={() => this.updateList()}/>
                                     </Grid>
                                 )
-                            })}        
+                            })}         */}
                         </Grid>
                     )}
                     <div className="d-flex justify-content-end">   
@@ -57,8 +69,30 @@ class ListePage extends React.Component {
     }
 
     async componentDidMount(){
-        api.getList(this.props.params.id).then(liste =>{
-            this.setState({liste});
+        api.getList(this.props.params.id).then((liste) => {
+            this.setState({
+              liste: {
+                ...liste,
+                results: liste.cartes
+              }
+            });
+        });
+    }
+
+    search(event) {
+        const search = event.target.value;
+        let results = this.state.liste.cartes;
+        if (search.length > 0) {
+          results = this.state.liste.cartes.filter(carte => {
+            return carte.content.includes(search)
+          })
+        }
+        this.setState({
+          liste: {
+            ...this.state.liste,
+            results,
+            search
+          }
         });
     }
 

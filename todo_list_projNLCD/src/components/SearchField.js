@@ -1,5 +1,5 @@
 export default function SearchField(props){
     return (
-        <input type="text" value={props.value} onChange={props.onChange}/>
+        <input type="text" id="search" value={props.value} onChange={props.onChange}/>
     )
 }

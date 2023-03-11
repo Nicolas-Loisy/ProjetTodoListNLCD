@@ -41,8 +41,6 @@ export default class CatalogueListesPage extends React.Component {
                                                 </svg>
                                             </button>
                                         </td>
-                                        {/* <td className="d-flex justify-content-end">
-                                        </td> */}
                                     </tr>
                                 );
                             })

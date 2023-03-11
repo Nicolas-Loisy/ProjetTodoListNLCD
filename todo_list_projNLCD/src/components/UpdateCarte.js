@@ -11,38 +11,12 @@ class UpdateCarte extends Component {
       content: props.carte.content,
       type: props.carte.type,
       listId: props.carte.listId,
-      //lists: [],
       message: "" // message de confirmation
       // checked: ""
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleInputChange(event) {
-    const target = event.target;
-    const value = target.type === "checkbox" ? target.checked : target.value;
-    const name = target.name;
-    
-    this.setState({
-        [name]: value
-    });
-}
-
-  handleSubmit(event) {
-    event.preventDefault();
-    // Modifier une carte existante
-    api.updateCarte(
-      this.props.carte.id,
-      this.state.listId,
-      this.state.title,
-      this.state.type,
-      this.state.content
-    ).then(() => {
-      this.props.onUpdate();
-      this.setState({ message: "Carte modifiée" });
-    });
   }
 
   render() {
@@ -65,23 +39,37 @@ class UpdateCarte extends Component {
           </select>
         </div>
 
-        {/* <div className="mb-3 g-3">
-          <select className="form-select" name="listId" value={this.state.listId} onChange={this.handleInputChange} required>
-            <option value="" selected>-- Sélectionner une liste --</option>
-            {this.state.lists.map(list => (
-              <option key={list.id} value={list.id}>
-                {list.title}
-              </option>
-            ))}
-          </select>
-        </div> */}
-
         <div className="d-flex justify-content-end">   
           <button className="btn btn-primary" type="submit">Modifier</button>
         </div>
         {this.state.message && <p>{this.state.message}</p>}
       </form>
     );
+  }
+
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.type === "checkbox" ? target.checked : target.value;
+    const name = target.name;
+    
+    this.setState({
+        [name]: value
+    });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    // Modifier une carte existante
+    api.updateCarte(
+      this.props.carte.id,
+      this.state.listId,
+      this.state.title,
+      this.state.type,
+      this.state.content
+    ).then(() => {
+      this.props.onUpdate();
+      this.setState({ message: "Carte modifiée" });
+    });
   }
 }
 
