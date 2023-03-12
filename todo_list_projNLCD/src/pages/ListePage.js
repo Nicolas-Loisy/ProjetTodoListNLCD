@@ -99,7 +99,12 @@ class ListePage extends React.Component {
 
     async updateList() {
         const liste = await api.getList(this.props.params.id);
-        this.setState({ liste });
+        this.setState({ 
+            liste: {
+                ...liste,
+                results: liste.cartes // Mettre à jour liste.results
+            } 
+        });
     }
 }
 export default withRouter(ListePage);
