@@ -3,7 +3,6 @@ import withRouter from "../lib/withRouter";
 import {api} from "../lib/Api";
 import { Container, Box } from "@mui/system";
 import { Grid, Typography } from "@mui/material";
-// import Carte from "../components/Carte";
 import AddCarte from "../components/AddCarte";
 import SearchField from "../components/SearchField";
 import SearchResults from "../components/SearchResults";
@@ -75,13 +74,11 @@ class ListePage extends React.Component {
     }
 
     search(event) {
-        const search = event.target.value.toLowerCase();
+        const search = event.target.value;
         let results = this.state.liste.cartes;
         if (search.length > 0) {
           results = this.state.liste.cartes.filter(carte => {
-            const content = carte.content.toLowerCase(); 
-            const title = carte.title.toLowerCase(); 
-            return (content.includes(search) || title.includes(search))
+            return (carte.content.includes(search) || carte.title.includes(search))
           })
         }
         this.setState({

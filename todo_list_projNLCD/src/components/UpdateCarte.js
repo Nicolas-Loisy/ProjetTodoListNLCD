@@ -11,10 +11,7 @@ class UpdateCarte extends Component {
       content: props.carte.content,
       type: props.carte.type,
       listId: props.carte.listId,
-      //lists: [],
       message: "", // message de confirmation
-      checkboxContent: props.carte.type === "checkbox" ? props.carte.content : [], // Tableau pour stocker les contenus de checkbox
-
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -27,7 +24,6 @@ class UpdateCarte extends Component {
       title: carte.title,
       content: carte.content,
       type: carte.type,
-      checkboxContent: carte.type === "checkbox" ? carte.content : [],
     });
   }
 
@@ -44,8 +40,8 @@ class UpdateCarte extends Component {
   // Ajout de la fonction pour ajouter une checkbox
   handleAddCheckbox = (event) => {
     event.preventDefault();
-    const checkboxContent = this.state.checkboxContent.concat({ content: "", checked: "false" }); // Ajout d'un objet avec une clé "content" et une clé "checked" initialisée à false
-    this.setState({ checkboxContent });
+    const checkboxContent = this.state.content.concat({ content: "", checked: false }); // Ajout d'un objet avec une clé "content" et une clé "checked" initialisée à false
+    this.setState({ content:checkboxContent });
   }
 
   handleSubmit(event) {
