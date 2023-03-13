@@ -14,7 +14,7 @@ export default function SearchResults(props) {
               props.results.map(carte => {
                 return (
                   <Grid item xs={4} key={carte.id}>
-                    <Carte carte={carte} />
+                    <Carte carte={carte} onUpdate={props.updateList}/>
                   </Grid>
                 )
               })

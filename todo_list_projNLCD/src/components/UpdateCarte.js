@@ -64,7 +64,7 @@ class UpdateCarte extends Component {
   }
 
   render() {
-    const { type, content, checkboxContent } = this.state;
+    const { type, content } = this.state;
 
     return (
       <form className="p-3" onSubmit={this.handleSubmit}>
@@ -117,16 +117,6 @@ class UpdateCarte extends Component {
             <textarea type="text" className="form-control" name="content" value={content} onChange={this.handleInputChange} placeholder="Contenu de la carte" required />
           )}
         </div>
-
-        {/* <div className="mb-3 g-3">
-          <select className="form-select" name="type" onChange={this.handleInputChange} defaultValue="" required >
-            <option value="" disabled>
-              Sélectionnez le type de carte
-            </option>
-            <option value="Texte">Texte</option>
-            <option value="Checkbox">Checkbox</option>
-          </select>
-        </div> */}
 
         <div className="d-flex justify-content-end">   
           <button className="btn btn-primary" type="submit">Modifier</button>

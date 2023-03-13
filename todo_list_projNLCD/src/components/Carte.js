@@ -8,10 +8,6 @@ function handleDelete(props) {
   });
 }
 
-function handleUpdate(props) {
-    console.log(props);
-}
-
 function handleUpdateCheckbox(props, check, i) {
     props.carte.content[i].checked = check;
 

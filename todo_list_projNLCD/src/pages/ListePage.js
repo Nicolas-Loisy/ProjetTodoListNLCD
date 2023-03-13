@@ -22,28 +22,22 @@ class ListePage extends React.Component {
     
             
     render(){
-        console.log(this.state.liste); 
         return (
             <div>
                 <Container>
                     {this.state.liste.cartes.length === 0 ? (
                         <Typography variant="h5">Aucune carte créée</Typography>
                     ) : (
+                            
                         <>
-                        <Box sx={{marginBottom: "5px"}}>
-                            <SearchField value={this.state.liste.search} onChange={(e) => this.search(e)} />
-                            <SearchResults results={this.state.liste.results} search={this.state.liste.search}/>
-                        </Box>
+                            <Box sx={{marginBottom: "5px"}}>
+                                <SearchField value={this.state.liste.search} onChange={(e) => this.search(e)} />
+                                <SearchResults results={this.state.liste.results} search={this.state.liste.search} updateList={() => this.updateList()}/>
+                            </Box>
                         <Grid container spacing={2}>
 
 
-                            {/* {this.state.liste.cartes.map(carte=>{
-                                return (
-                                    <Grid item xs={12} key={carte.id} sm={4}> 
-                                        <Carte liste={this.state.liste} carte={carte} onUpdate={() => this.updateList()}/>
-                                    </Grid>
-                                )
-                            })}         */}
+                                    
                         </Grid>
                         </>
                     )}
@@ -104,7 +98,7 @@ class ListePage extends React.Component {
         this.setState({ 
             liste: {
                 ...liste,
-                results: liste.cartes // Mettre à jour liste.results
+                results: liste.cartes 
             } 
         });
     }
