@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import AddList from "../components/AddList";
 
 class AddListPage extends Component {
