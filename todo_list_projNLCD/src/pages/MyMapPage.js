@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Box, Container } from "@mui/system";
+import React from "react";
+import { Container } from "@mui/system";
 import MyMap from "../components/MyMap";
 
 export default class MyMapPage extends React.Component {

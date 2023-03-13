@@ -1,81 +1,79 @@
 import React, { Component } from "react";
 import { api } from "../lib/Api";
 
-class AddCarte extends Component {
+
+class UpdateCarte extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      title: "",
-      content: "",
-      type: "",
-      listId: props.listId,
-      lists: [],
-      message: "",
-      checkboxContent: [] // Ajout du tableau pour stocker les contenus de checkbox
+      title: props.carte.title,
+      content: props.carte.content,
+      type: props.carte.type,
+      listId: props.carte.listId,
+      message: "", // message de confirmation
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    const { carte } = this.props;
+    this.setState({
+      title: carte.title,
+      content: carte.content,
+      type: carte.type,
+    });
+  }
 
   handleInputChange(event) {
     const target = event.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
-
+    
     this.setState({
-      [name]: value
+        [name]: value
     });
   }
 
   // Ajout de la fonction pour ajouter une checkbox
   handleAddCheckbox = (event) => {
     event.preventDefault();
-    const checkboxContent = this.state.checkboxContent.concat({ content: "", checked: false }); // Ajout d'un objet avec une clé "content" et une clé "checked" initialisée à false
-    this.setState({ checkboxContent });
+    const checkboxContent = this.state.content.concat({ content: "", checked: false }); // Ajout d'un objet avec une clé "content" et une clé "checked" initialisée à false
+    this.setState({ content:checkboxContent });
   }
-  
+
   handleSubmit(event) {
     event.preventDefault();
-    const { listId, title, type, content, checkboxContent } = this.state;
-    const carteContent = type === "Checkbox" ? checkboxContent.map((c) => ({ label: c, checked: false })) : content;
-
-    api.addCarte(
-      listId,
-      title,
-      type,
-      carteContent // Utilisation de carteContent au lieu de content
+    // Modifier une carte existante
+    api.updateCarte(
+      this.props.carte.id,
+      this.state.listId,
+      this.state.title,
+      this.state.type,
+      this.state.content
     ).then(() => {
       this.props.onUpdate();
-      this.setState({ message: "Carte ajoutée" });
+      this.setState({ message: "Carte modifiée" });
     });
   }
 
   render() {
-    const { type, content, checkboxContent } = this.state;
+    const { type, content } = this.state;
 
     return (
       <form className="p-3" onSubmit={this.handleSubmit}>
         <div className="mb-3 g-3">
+          <h5>Titre de votre carte</h5>
           <input type="text" className="form-control" name="title" value={this.state.title} onChange={this.handleInputChange} placeholder="Titre carte" maxLength="25" required />
         </div>
 
         <div className="mb-3 g-3">
-          <select className="form-select" name="type" onChange={this.handleInputChange} defaultValue="" required >
-            <option value="" disabled>
-              Sélectionnez le type de carte
-            </option>
-            <option value="Texte">Texte</option>
-            <option value="Checkbox">Checkbox</option>
-          </select>
-        </div>
-
-        <div className="mb-3">
           {type === "Checkbox" ? ( // Condition pour afficher soit le textarea soit les checkboxes
             <div>
-              {checkboxContent.map((checkbox, index) => (
+              <h5>Vos checkbox</h5>
+              {content.map((checkbox, index) => (
                 <div key={index}>
                   <div className="row">
                   <input
@@ -84,10 +82,10 @@ class AddCarte extends Component {
                     value={checkbox.label}
                     onChange={(e) => {
                       const { value } = e.target;
-                      const updatedContent = checkboxContent.map((c, i) =>
-                        i === index ? value : c
+                      const updatedContent = content.map((c, i) =>
+                      i === index ? {"label":value, "checked":checkbox.checked} : c
                       );
-                      this.setState({ checkboxContent: updatedContent });
+                      this.setState({ content: updatedContent });
                     }}
                     placeholder="Contenu de la checkbox"
                     required
@@ -96,10 +94,10 @@ class AddCarte extends Component {
                     className="btn btn-danger m-2 col-auto d-inline-block btn-sm"
                     onClick={(e) => {
                       e.preventDefault();
-                      const updatedContent = checkboxContent.filter(
+                      const updatedContent = content.filter(
                         (_, i) => i !== index
                       );
-                      this.setState({ checkboxContent: updatedContent });
+                      this.setState({ content: updatedContent });
                     }}
                   >
                     X
@@ -115,14 +113,14 @@ class AddCarte extends Component {
             <textarea type="text" className="form-control" name="content" value={content} onChange={this.handleInputChange} placeholder="Contenu de la carte" required />
           )}
         </div>
-    <div className="mb-3 g-3">
-      <button type="submit" className="btn btn-primary">
-        Ajouter une carte
-      </button>
-    </div>
-  </form>
-);
-}
+
+        <div className="d-flex justify-content-end">   
+          <button className="btn btn-primary" type="submit">Modifier</button>
+        </div>
+        {this.state.message && <p>{this.state.message}</p>}
+      </form>
+    );
+  }
 }
 
-export default AddCarte;
+export default UpdateCarte;
