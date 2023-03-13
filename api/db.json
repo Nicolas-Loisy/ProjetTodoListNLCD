@@ -64,7 +64,7 @@
       "listId": "a3038698-7174-4411-8916-2499390cfbc9",
       "title": "oeuf",
       "type": "Texte",
-      "content": "avvv",
+      "content": "avvvvb",
       "id": "336b5169-dac1-4409-9577-da1729d45a64"
     },
     {
@@ -73,6 +73,61 @@
       "type": "Texte",
       "content": "pd",
       "id": "2883d4db-1bce-4dca-9b11-9052a252de7e"
+    },
+    {
+      "listId": "a3038698-7174-4411-8916-2499390cfbc9",
+      "title": "azertyu",
+      "type": "Checkbox",
+      "content": [
+        {
+          "label": "sdfghj",
+          "checked": true
+        },
+        {
+          "label": "bnhhhhhh",
+          "checked": false
+        },
+        {
+          "label": "dfghjkl",
+          "checked": true
+        },
+        {
+          "label": "hio",
+          "checked": true
+        },
+        {
+          "label": "fghj",
+          "checked": false
+        },
+        {
+          "label": "g",
+          "checked": false
+        }
+      ],
+      "id": "eabf2514-27d9-4148-b9df-0b35eb43c13a"
+    },
+    {
+      "listId": "a3038698-7174-4411-8916-2499390cfbc9",
+      "title": "bhjk",
+      "type": "Texte",
+      "content": "ghjk",
+      "id": "f82fba58-8610-46d5-97f8-30bf186d1f6f"
+    },
+    {
+      "listId": "a3038698-7174-4411-8916-2499390cfbc9",
+      "title": "bhjk",
+      "type": "Checkbox",
+      "content": [
+        {
+          "label": "vbn,",
+          "checked": false
+        },
+        {
+          "label": "bn,",
+          "checked": false
+        }
+      ],
+      "id": "f596255d-a287-4efa-9cc2-d947f90eea82"
     }
   ]
 }

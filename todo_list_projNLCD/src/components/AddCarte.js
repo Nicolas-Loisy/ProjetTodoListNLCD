@@ -33,16 +33,14 @@ class AddCarte extends Component {
   // Ajout de la fonction pour ajouter une checkbox
   handleAddCheckbox = (event) => {
     event.preventDefault();
-    const checkboxContent = this.state.checkboxContent.concat({ content: "", checked: "false" }); // Ajout d'un objet avec une clé "content" et une clé "checked" initialisée à false
+    const checkboxContent = this.state.checkboxContent.concat({ content: "", checked: false }); // Ajout d'un objet avec une clé "content" et une clé "checked" initialisée à false
     this.setState({ checkboxContent });
   }
-  
   
   handleSubmit(event) {
     event.preventDefault();
     const { listId, title, type, content, checkboxContent } = this.state;
     const carteContent = type === "Checkbox" ? checkboxContent.map((c) => ({ label: c, checked: false })) : content;
-    // const carteContent = type === "Checkbox" ? checkboxContent : content; // Utilisation du tableau de contenus de checkbox si type est checkbox
 
     api.addCarte(
       listId,

@@ -3,7 +3,6 @@ import withRouter from "../lib/withRouter";
 import {api} from "../lib/Api";
 import { Container, Box } from "@mui/system";
 import { Grid, Typography } from "@mui/material";
-// import Carte from "../components/Carte";
 import AddCarte from "../components/AddCarte";
 import SearchField from "../components/SearchField";
 import SearchResults from "../components/SearchResults";
