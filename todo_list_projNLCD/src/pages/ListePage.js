@@ -36,8 +36,7 @@ class ListePage extends React.Component {
                             </Box>
                         <Grid container spacing={2}>
 
-
-                                    
+         
                         </Grid>
                         </>
                     )}
@@ -76,12 +75,13 @@ class ListePage extends React.Component {
     }
 
     search(event) {
-        const search = event.target.value;
+        const search = event.target.value.toLowerCase();
         let results = this.state.liste.cartes;
         if (search.length > 0) {
           results = this.state.liste.cartes.filter(carte => {
-            return (carte.content.includes(search) || carte.title.includes(search))
-            //return carte.content.includes(search)
+            const content = carte.content.toLowerCase(); 
+            const title = carte.title.toLowerCase(); 
+            return (content.includes(search) || title.includes(search))
           })
         }
         this.setState({

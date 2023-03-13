@@ -14,7 +14,7 @@ class AddList extends Component {
     return (
       <div>
         <h2>Ajouter une liste</h2>
-        <form className="p-3" onSubmit={this.handleSubmit}>
+       <form className="p-3" onSubmit={this.handleSubmit}>
           <div className="mb-3 g-3">
             <input type="text" className="form-control" name="title" value={this.state.title} onChange={this.handleTitleChange} placeholder="Titre liste" maxLength="25" required/>
           </div>
