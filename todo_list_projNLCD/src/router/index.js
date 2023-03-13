@@ -1,14 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home";
-import QuotesList from "../pages/QuotesList";
-import AuthorsList from "../pages/AuthorsList";
-import Author from "../pages/Author";
-import QuotesNew from "../pages/QuotesNew";
+import CatalogueListesPage from "../pages/CatalogueListesPage";
+import ListePage from "../pages/ListePage";
+import MyMapPage from "../pages/MyMapPage";
 
 export const router = createBrowserRouter([
   {path: "/", element: <Home/>},
-  {path: "/quotes", element: <QuotesList/>},
-  {path: "/authors", element: <AuthorsList/>},
-  {path: "/authors/:id", element: <Author/>},
-  {path: "/quotesNew", element: <QuotesNew/>}
+  {path: "/listes", element: <CatalogueListesPage/>},
+  {path: "/listes/:id", element: <ListePage/>},
+  {path: "/MyMap", element: <MyMapPage/>}
 ]);
